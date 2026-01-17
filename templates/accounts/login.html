@@ -1,0 +1,62 @@
+<!-- ==================== templates/accounts/login.html ==================== -->
+{% extends 'base.html' %}
+
+{% block title %}Login - EduAccess{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header text-center" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                    <h3 class="mb-0">Login to EduAccess</h3>
+                </div>
+                <div class="card-body p-4">
+                    <!-- User Type Selector -->
+                    <div class="user-type-selector d-flex gap-2 mb-4">
+                        <button type="button" class="btn btn-outline-primary flex-fill active" onclick="setLoginType('student')">
+                            <i class="bi bi-person-fill"></i> Student
+                        </button>
+                        <button type="button" class="btn btn-outline-primary flex-fill" onclick="setLoginType('educator')">
+                            <i class="bi bi-person-workspace"></i> Educator
+                        </button>
+                    </div>
+
+                    <!-- Login Form -->
+                    <form method="POST" action="/accounts/login/">
+                        {% csrf_token %}
+                        <input type="hidden" name="user_type" id="loginUserType" value="student">
+                        
+                        <div class="mb-3">
+                            <label for="loginEmail" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="loginEmail" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="loginPassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="loginPassword" name="password" required>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="rememberMe" name="remember">
+                            <label class="form-check-label" for="rememberMe">Remember me</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary-custom w-100">Login</button>
+                    </form>
+
+                    <div class="text-center mt-3">
+                        <p class="mb-0">Don't have an account? <a href="/accounts/signup/">Sign up</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function setLoginType(type) {
+    document.getElementById('loginUserType').value = type;
+    const buttons = document.querySelectorAll('.user-type-selector .btn');
+    buttons.forEach(btn => btn.classList.remove('active'));
+    event.target.closest('button').classList.add('active');
+}
+</script>
+{% endblock %}

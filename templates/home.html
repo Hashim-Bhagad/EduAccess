@@ -1,0 +1,203 @@
+<!-- ==================== templates/home.html ==================== -->
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <h1>Welcome to EduAccess</h1>
+        <p class="lead">Free education for everyone. Learn from the best educators worldwide.</p>
+        <div class="mt-4">
+            <button class="btn btn-light btn-lg me-3" data-bs-toggle="modal" data-bs-target="#signupModal">
+                Get Started Free
+            </button>
+            <button class="btn btn-outline-light btn-lg" data-bs-toggle="modal" data-bs-target="#loginModal">
+                Sign In
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section id="features" class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Why Choose EduAccess?</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card feature-card">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon">📚</div>
+                        <h3 class="card-title h5">For Students</h3>
+                        <p class="card-text">Access thousands of free courses, videos, PDFs, and quizzes. Learn at your own pace and enhance your skills without any cost.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card feature-card">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon">👨‍🏫</div>
+                        <h3 class="card-title h5">For Educators</h3>
+                        <p class="card-text">Share your knowledge with students worldwide. Upload courses, create engaging content, and make a difference in education.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card feature-card">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon">🌍</div>
+                        <h3 class="card-title h5">Completely Free</h3>
+                        <p class="card-text">No hidden fees, no subscriptions. Quality education should be accessible to everyone, everywhere.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="stats-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 stat-card">
+                <div class="stat-number">10K+</div>
+                <p class="text-muted">Students</p>
+            </div>
+            <div class="col-md-3 stat-card">
+                <div class="stat-number">500+</div>
+                <p class="text-muted">Educators</p>
+            </div>
+            <div class="col-md-3 stat-card">
+                <div class="stat-number">1000+</div>
+                <p class="text-muted">Courses</p>
+            </div>
+            <div class="col-md-3 stat-card">
+                <div class="stat-number">100%</div>
+                <p class="text-muted">Free</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Login to EduAccess</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-4">
+                <!-- User Type Selector -->
+                <div class="user-type-selector d-flex gap-2 mb-4">
+                    <button type="button" class="btn btn-outline-primary flex-fill active" onclick="setLoginType('student')">
+                        <i class="bi bi-person-fill"></i> Student
+                    </button>
+                    <button type="button" class="btn btn-outline-primary flex-fill" onclick="setLoginType('educator')">
+                        <i class="bi bi-person-workspace"></i> Educator
+                    </button>
+                </div>
+
+                <!-- Login Form -->
+                <form method="POST" action="/accounts/login/">
+                    {% csrf_token %}
+                    <input type="hidden" name="user_type" id="loginUserType" value="student">
+                    
+                    <div class="mb-3">
+                        <label for="loginEmail" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="loginEmail" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="loginPassword" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="loginPassword" name="password" required>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="rememberMe" name="remember">
+                        <label class="form-check-label" for="rememberMe">Remember me</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary-custom w-100">Login</button>
+                </form>
+
+                <div class="text-center mt-3">
+                    <p class="mb-0">Don't have an account? <a href="#" data-bs-toggle="modal" data-bs-target="#signupModal" data-bs-dismiss="modal">Sign up</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Signup Modal -->
+<div class="modal fade" id="signupModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Join EduAccess</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-4">
+                <!-- User Type Selector -->
+                <div class="user-type-selector d-flex gap-2 mb-4">
+                    <button type="button" class="btn btn-outline-primary flex-fill active" onclick="setSignupType('student')">
+                        <i class="bi bi-person-fill"></i> Student
+                    </button>
+                    <button type="button" class="btn btn-outline-primary flex-fill" onclick="setSignupType('educator')">
+                        <i class="bi bi-person-workspace"></i> Educator
+                    </button>
+                </div>
+
+                <!-- Signup Form -->
+                <form method="POST" action="/accounts/signup/">
+                    {% csrf_token %}
+                    <input type="hidden" name="user_type" id="signupUserType" value="student">
+                    
+                    <div class="mb-3">
+                        <label for="signupName" class="form-label">Full Name</label>
+                        <input type="text" class="form-control" id="signupName" name="full_name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="signupEmail" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="signupEmail" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="signupPassword" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="signupPassword" name="password1" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="signupConfirmPassword" class="form-label">Confirm Password</label>
+                        <input type="password" class="form-control" id="signupConfirmPassword" name="password2" required>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="agreeTerms" required>
+                        <label class="form-check-label" for="agreeTerms">
+                            I agree to the Terms and Conditions
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary-custom w-100">Sign Up</button>
+                </form>
+
+                <div class="text-center mt-3">
+                    <p class="mb-0">Already have an account? <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal">Login</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function setLoginType(type) {
+    document.getElementById('loginUserType').value = type;
+    const buttons = document.querySelectorAll('#loginModal .user-type-selector .btn');
+    buttons.forEach(btn => btn.classList.remove('active'));
+    event.target.closest('button').classList.add('active');
+}
+
+function setSignupType(type) {
+    document.getElementById('signupUserType').value = type;
+    const buttons = document.querySelectorAll('#signupModal .user-type-selector .btn');
+    buttons.forEach(btn => btn.classList.remove('active'));
+    event.target.closest('button').classList.add('active');
+}
+</script>
+{% endblock %}
