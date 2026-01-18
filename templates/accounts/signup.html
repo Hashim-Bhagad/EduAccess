@@ -1,66 +1,199 @@
-<!-- ==================== templates/accounts/signup.html ==================== -->
 {% extends 'base.html' %}
 
 {% block title %}Sign Up - EduAccess{% endblock %}
 
 {% block content %}
-<div class="container my-5">
+<div class="container my-5" style="padding-top: 80px;">
     <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card shadow">
-                <div class="card-header text-center" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
-                    <h3 class="mb-0">Join EduAccess</h3>
-                </div>
-                <div class="card-body p-4">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-5">
+                    <div class="text-center mb-4">
+                        <h2 class="fw-semibold mb-2">Join EduAccess</h2>
+                        <p class="text-muted">Create your free account</p>
+                    </div>
+
+                    <!-- Display Messages -->
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    <!-- Display Form Errors -->
+                    {% if form.errors %}
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Please correct the following errors:</strong>
+                            <ul class="mb-0 mt-2">
+                                {% for field, errors in form.errors.items %}
+                                    {% for error in errors %}
+                                        <li>{{ error }}</li>
+                                    {% endfor %}
+                                {% endfor %}
+                            </ul>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endif %}
+
                     <!-- User Type Selector -->
                     <div class="user-type-selector d-flex gap-2 mb-4">
                         <button type="button" class="btn btn-outline-primary flex-fill active" onclick="setSignupType('student')">
-                            <i class="bi bi-person-fill"></i> Student
+                            <i class="bi bi-person-fill me-1"></i> Student
                         </button>
                         <button type="button" class="btn btn-outline-primary flex-fill" onclick="setSignupType('educator')">
-                            <i class="bi bi-person-workspace"></i> Educator
+                            <i class="bi bi-person-workspace me-1"></i> Educator
                         </button>
                     </div>
 
                     <!-- Signup Form -->
-                    <form method="POST" action="/accounts/signup/">
+                    <form method="POST" action="{% url 'accounts:signup' %}">
                         {% csrf_token %}
                         <input type="hidden" name="user_type" id="signupUserType" value="student">
                         
                         <div class="mb-3">
                             <label for="signupName" class="form-label">Full Name</label>
-                            <input type="text" class="form-control" id="signupName" name="full_name" required>
+                            <input type="text" class="form-control {% if form.full_name.errors %}is-invalid{% endif %}" 
+                                   id="signupName" name="full_name" value="{{ form.full_name.value|default:'' }}" required>
+                            {% if form.full_name.errors %}
+                                <div class="invalid-feedback">
+                                    {{ form.full_name.errors.0 }}
+                                </div>
+                            {% endif %}
                         </div>
+                        
                         <div class="mb-3">
                             <label for="signupEmail" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="signupEmail" name="email" required>
+                            <input type="email" class="form-control {% if form.email.errors %}is-invalid{% endif %}" 
+                                   id="signupEmail" name="email" value="{{ form.email.value|default:'' }}" required>
+                            {% if form.email.errors %}
+                                <div class="invalid-feedback">
+                                    {{ form.email.errors.0 }}
+                                </div>
+                            {% endif %}
                         </div>
+                        
                         <div class="mb-3">
                             <label for="signupPassword" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="signupPassword" name="password1" required>
+                            <input type="password" class="form-control {% if form.password1.errors %}is-invalid{% endif %}" 
+                                   id="signupPassword" name="password1" required>
                             <div class="form-text">Password must be at least 8 characters long.</div>
+                            {% if form.password1.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.password1.errors.0 }}
+                                </div>
+                            {% endif %}
                         </div>
+                        
                         <div class="mb-3">
                             <label for="signupConfirmPassword" class="form-label">Confirm Password</label>
-                            <input type="password" class="form-control" id="signupConfirmPassword" name="password2" required>
+                            <input type="password" class="form-control {% if form.password2.errors %}is-invalid{% endif %}" 
+                                   id="signupConfirmPassword" name="password2" required>
+                            {% if form.password2.errors %}
+                                <div class="invalid-feedback">
+                                    {{ form.password2.errors.0 }}
+                                </div>
+                            {% endif %}
                         </div>
-                        <div class="mb-3 form-check">
+                        
+                        <div class="mb-4 form-check">
                             <input type="checkbox" class="form-check-input" id="agreeTerms" required>
                             <label class="form-check-label" for="agreeTerms">
                                 I agree to the Terms and Conditions
                             </label>
                         </div>
-                        <button type="submit" class="btn btn-primary-custom w-100">Sign Up</button>
+                        
+                        <button type="submit" class="btn btn-primary w-100 py-2">Create Account</button>
                     </form>
 
-                    <div class="text-center mt-3">
-                        <p class="mb-0">Already have an account? <a href="/accounts/login/">Login</a></p>
+                    <div class="text-center mt-4">
+                        <p class="mb-0 text-muted">Already have an account? <a href="{% url 'accounts:login' %}" class="text-decoration-none">Log in</a></p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<style>
+.user-type-selector .btn {
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    transition: all 0.3s;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    border: 1px solid var(--color-gray-300);
+}
+
+.user-type-selector .btn-outline-primary:not(.active) {
+    background: white;
+    color: var(--color-gray-700);
+    border-color: var(--color-gray-300);
+}
+
+.user-type-selector .btn.active {
+    background: var(--color-blue-accent);
+    border-color: var(--color-blue-accent);
+    color: white;
+}
+
+.user-type-selector .btn:hover:not(.active) {
+    background: var(--color-gray-100);
+    border-color: var(--color-gray-400);
+}
+
+.card {
+    border-radius: 18px;
+    border: 1px solid var(--color-gray-200) !important;
+}
+
+.form-label {
+    font-weight: 500;
+    color: var(--color-black);
+    font-size: 0.9375rem;
+    margin-bottom: 0.5rem;
+}
+
+.form-check-label {
+    font-size: 0.9375rem;
+    color: var(--color-gray-700);
+}
+
+.form-check-input:checked {
+    background-color: var(--color-blue-accent);
+    border-color: var(--color-blue-accent);
+}
+
+.form-text {
+    color: var(--color-gray-500);
+    font-size: 0.875rem;
+}
+
+.is-invalid {
+    border-color: #dc3545;
+}
+
+.invalid-feedback {
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+.alert {
+    border-radius: 12px;
+    font-size: 0.9375rem;
+}
+
+a {
+    color: var(--color-blue-accent);
+}
+
+a:hover {
+    color: var(--color-blue-hover);
+}
+</style>
 
 <script>
 function setSignupType(type) {
@@ -70,135 +203,4 @@ function setSignupType(type) {
     event.target.closest('button').classList.add('active');
 }
 </script>
-{% endblock %}
-
-
-<!-- ==================== templates/dashboard.html ==================== -->
-{% extends 'base.html' %}
-
-{% block title %}Dashboard - EduAccess{% endblock %}
-
-{% block content %}
-<div class="container my-5">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <div>
-                    <h1>Welcome, {{ user.first_name }}!</h1>
-                    <p class="lead text-muted">You are logged in as a <strong>{{ user.get_user_type_display }}</strong></p>
-                </div>
-                <div>
-                    <a href="/accounts/profile/" class="btn btn-outline-primary">
-                        <i class="bi bi-person-circle"></i> View Profile
-                    </a>
-                </div>
-            </div>
-            
-            {% if user.user_type == 'student' %}
-                <!-- Student Dashboard -->
-                <div class="row g-4 mb-4">
-                    <div class="col-md-4">
-                        <div class="card text-center">
-                            <div class="card-body">
-                                <h3 class="text-primary">{{ enrolled_courses.count }}</h3>
-                                <p class="text-muted mb-0">Enrolled Courses</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card text-center">
-                            <div class="card-body">
-                                <h3 class="text-success">0</h3>
-                                <p class="text-muted mb-0">Completed Courses</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card text-center">
-                            <div class="card-body">
-                                <h3 class="text-info">0</h3>
-                                <p class="text-muted mb-0">Certificates Earned</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-header d-flex justify-content-between align-items-center">
-                        <h3 class="mb-0">My Enrolled Courses</h3>
-                        <a href="/courses/" class="btn btn-primary">Browse Courses</a>
-                    </div>
-                    <div class="card-body">
-                        {% if enrolled_courses %}
-                            <div class="row">
-                                {% for course in enrolled_courses %}
-                                    <div class="col-md-4 mb-3">
-                                        <div class="card h-100">
-                                            <div class="card-body">
-                                                <h5 class="card-title">{{ course.title }}</h5>
-                                                <p class="card-text">{{ course.description|truncatewords:20 }}</p>
-                                                <a href="/courses/{{ course.id }}/" class="btn btn-sm btn-outline-primary">Continue Learning</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                {% endfor %}
-                            </div>
-                        {% else %}
-                            <div class="text-center py-5">
-                                <i class="bi bi-book" style="font-size: 4rem; color: #ccc;"></i>
-                                <p class="text-muted mt-3">You haven't enrolled in any courses yet.</p>
-                                <a href="/courses/" class="btn btn-primary">Browse Available Courses</a>
-                            </div>
-                        {% endif %}
-                    </div>
-                </div>
-            
-            {% else %}
-                <!-- Educator Dashboard -->
-                <div class="row g-4 mb-4">
-                    <div class="col-md-4">
-                        <div class="card text-center">
-                            <div class="card-body">
-                                <h3 class="text-primary">0</h3>
-                                <p class="text-muted mb-0">Total Courses</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card text-center">
-                            <div class="card-body">
-                                <h3 class="text-success">0</h3>
-                                <p class="text-muted mb-0">Total Students</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card text-center">
-                            <div class="card-body">
-                                <h3 class="text-info">0</h3>
-                                <p class="text-muted mb-0">Total Views</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-header d-flex justify-content-between align-items-center">
-                        <h3 class="mb-0">My Courses</h3>
-                        <a href="/courses/create/" class="btn btn-primary">
-                            <i class="bi bi-plus-circle"></i> Create New Course
-                        </a>
-                    </div>
-                    <div class="card-body">
-                        <div class="text-center py-5">
-                            <i class="bi bi-journal-plus" style="font-size: 4rem; color: #ccc;"></i>
-                            <p class="text-muted mt-3">You haven't created any courses yet.</p>
-                            <a href="/courses/create/" class="btn btn-primary">Create Your First Course</a>
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
-        </div>
-    </div>
-</div>
 {% endblock %}

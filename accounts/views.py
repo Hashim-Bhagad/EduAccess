@@ -12,11 +12,15 @@ def signup_view(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
-            user = form.save()
-            login(request, user)
-            messages.success(request, f'Welcome to EduAccess, {user.first_name}!')
-            return redirect('core:dashboard')
+            try:
+                user = form.save()
+                login(request, user)
+                messages.success(request, f'Welcome to EduAccess, {user.first_name}! Your account has been created successfully.')
+                return redirect('core:dashboard')
+            except Exception as e:
+                messages.error(request, f'An error occurred while creating your account: {str(e)}')
         else:
+            # Form has validation errors - they will be displayed in the template
             messages.error(request, 'Please correct the errors below.')
     else:
         form = SignUpForm()
@@ -35,8 +39,8 @@ def login_view(request):
         
         # Authenticate using email
         try:
-            user = User.objects.get(email=email)
-            user = authenticate(request, username=user.username, password=password)
+            user_obj = User.objects.get(email=email)
+            user = authenticate(request, username=user_obj.username, password=password)
             
             if user is not None:
                 # Check if user type matches
@@ -48,19 +52,22 @@ def login_view(request):
                     next_url = request.GET.get('next', 'core:dashboard')
                     return redirect(next_url)
                 else:
-                    messages.error(request, f'This account is registered as a {user.user_type}, not a {user_type}.')
+                    messages.error(request, f'This account is registered as a {user.get_user_type_display()}, not a {user_type}. Please select the correct account type.')
             else:
-                messages.error(request, 'Invalid email or password.')
+                messages.error(request, 'Invalid email or password. Please try again.')
         except User.DoesNotExist:
-            messages.error(request, 'No account found with this email.')
+            messages.error(request, 'No account found with this email address. Please check your email or sign up.')
+        except Exception as e:
+            messages.error(request, f'An error occurred: {str(e)}')
     
     return render(request, 'accounts/login.html')
 
 
 @login_required
 def logout_view(request):
+    user_name = request.user.first_name
     logout(request)
-    messages.success(request, 'You have been logged out successfully.')
+    messages.success(request, f'Goodbye, {user_name}! You have been logged out successfully.')
     return redirect('core:home')
 
 

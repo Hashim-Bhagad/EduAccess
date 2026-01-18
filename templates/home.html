@@ -1,78 +1,87 @@
-<!-- ==================== templates/home.html ==================== -->
 {% extends 'base.html' %}
 
 {% block content %}
 <!-- Hero Section -->
 <section class="hero-section">
     <div class="container">
-        <h1>Welcome to EduAccess</h1>
-        <p class="lead">Free education for everyone. Learn from the best educators worldwide.</p>
-        <div class="mt-4">
-            <button class="btn btn-light btn-lg me-3" data-bs-toggle="modal" data-bs-target="#signupModal">
-                Get Started Free
-            </button>
-            <button class="btn btn-outline-light btn-lg" data-bs-toggle="modal" data-bs-target="#loginModal">
-                Sign In
-            </button>
+        <div class="hero-card">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content">
+                    <h1 class="hero-title">
+                        Welcome to <span class="text-primary">EduAccess</span>
+                    </h1>
+                    <p class="lead mb-4">
+                        Free education for everyone. Learn from the best educators worldwide.
+                    </p>
+                    <div class="d-flex gap-3 flex-wrap mb-5">
+                        <button class="btn btn-primary btn-lg px-5" data-bs-toggle="modal" data-bs-target="#signupModal">
+                            <i class="bi bi-rocket-takeoff me-2"></i>Get Started Free
+                        </button>
+                        <button class="btn btn-outline-light btn-lg px-5" data-bs-toggle="modal" data-bs-target="#loginModal">
+                            <i class="bi bi-box-arrow-in-right me-2"></i>Sign In
+                        </button>
+                    </div>
+                    <div class="d-flex gap-4 align-items-center flex-wrap">
+                        <div class="stat-item">
+                            <h3 class="fw-bold mb-0">10K+</h3>
+                            <p class="small mb-0" style="color: rgba(255,255,255,0.6);">Students</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3 class="fw-bold mb-0">500+</h3>
+                            <p class="small mb-0" style="color: rgba(255,255,255,0.6);">Educators</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3 class="fw-bold mb-0">100%</h3>
+                            <p class="small mb-0" style="color: rgba(255,255,255,0.6);">Free</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-image-placeholder">
+                        <div class="placeholder-box">
+                            <i class="bi bi-mortarboard-fill placeholder-icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
 <!-- Features Section -->
-<section id="features" class="py-5">
+<section id="features" class="features-section py-5">
     <div class="container">
-        <h2 class="text-center mb-5">Why Choose EduAccess?</h2>
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="card feature-card">
-                    <div class="card-body text-center p-4">
-                        <div class="feature-icon">📚</div>
-                        <h3 class="card-title h5">For Students</h3>
-                        <p class="card-text">Access thousands of free courses, videos, PDFs, and quizzes. Learn at your own pace and enhance your skills without any cost.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card feature-card">
-                    <div class="card-body text-center p-4">
-                        <div class="feature-icon">👨‍🏫</div>
-                        <h3 class="card-title h5">For Educators</h3>
-                        <p class="card-text">Share your knowledge with students worldwide. Upload courses, create engaging content, and make a difference in education.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card feature-card">
-                    <div class="card-body text-center p-4">
-                        <div class="feature-icon">🌍</div>
-                        <h3 class="card-title h5">Completely Free</h3>
-                        <p class="card-text">No hidden fees, no subscriptions. Quality education should be accessible to everyone, everywhere.</p>
-                    </div>
-                </div>
-            </div>
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold mb-3">Why Choose EduAccess?</h2>
+            <p class="lead text-muted">Everything you need for a modern learning experience</p>
         </div>
-    </div>
-</section>
-
-<!-- Stats Section -->
-<section class="stats-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3 stat-card">
-                <div class="stat-number">10K+</div>
-                <p class="text-muted">Students</p>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4">
+                <div class="feature-card">
+                    <div class="icon-box mb-4">
+                        <i class="bi bi-book-fill"></i>
+                    </div>
+                    <h3 class="h4 mb-3">For Students</h3>
+                    <p class="text-muted">Access thousands of free courses, videos, PDFs, and quizzes. Learn at your own pace and enhance your skills without any cost.</p>
+                </div>
             </div>
-            <div class="col-md-3 stat-card">
-                <div class="stat-number">500+</div>
-                <p class="text-muted">Educators</p>
+            <div class="col-md-6 col-lg-4">
+                <div class="feature-card">
+                    <div class="icon-box mb-4">
+                        <i class="bi bi-person-workspace"></i>
+                    </div>
+                    <h3 class="h4 mb-3">For Educators</h3>
+                    <p class="text-muted">Share your knowledge with students worldwide. Upload courses, create engaging content, and make a difference in education.</p>
+                </div>
             </div>
-            <div class="col-md-3 stat-card">
-                <div class="stat-number">1000+</div>
-                <p class="text-muted">Courses</p>
-            </div>
-            <div class="col-md-3 stat-card">
-                <div class="stat-number">100%</div>
-                <p class="text-muted">Free</p>
+            <div class="col-md-6 col-lg-4">
+                <div class="feature-card">
+                    <div class="icon-box mb-4">
+                        <i class="bi bi-globe"></i>
+                    </div>
+                    <h3 class="h4 mb-3">Completely Free</h3>
+                    <p class="text-muted">No hidden fees, no subscriptions. Quality education should be accessible to everyone, everywhere.</p>
+                </div>
             </div>
         </div>
     </div>
@@ -82,7 +91,7 @@
 <div class="modal fade" id="loginModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header border-0">
                 <h5 class="modal-title">Login to EduAccess</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
@@ -114,7 +123,7 @@
                         <input type="checkbox" class="form-check-input" id="rememberMe" name="remember">
                         <label class="form-check-label" for="rememberMe">Remember me</label>
                     </div>
-                    <button type="submit" class="btn btn-primary-custom w-100">Login</button>
+                    <button type="submit" class="btn btn-primary w-100">Login</button>
                 </form>
 
                 <div class="text-center mt-3">
@@ -129,7 +138,7 @@
 <div class="modal fade" id="signupModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header border-0">
                 <h5 class="modal-title">Join EduAccess</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
@@ -171,7 +180,7 @@
                             I agree to the Terms and Conditions
                         </label>
                     </div>
-                    <button type="submit" class="btn btn-primary-custom w-100">Sign Up</button>
+                    <button type="submit" class="btn btn-primary w-100">Sign Up</button>
                 </form>
 
                 <div class="text-center mt-3">
@@ -181,6 +190,38 @@
         </div>
     </div>
 </div>
+
+<style>
+.user-type-selector .btn {
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    transition: all 0.3s;
+    font-size: 0.9375rem;
+    font-weight: 500;
+}
+
+.user-type-selector .btn-outline-primary:not(.active) {
+    background: white;
+    color: var(--color-gray-700);
+    border-color: var(--color-gray-300);
+}
+
+.user-type-selector .btn.active {
+    background: var(--color-blue-accent);
+    border-color: var(--color-blue-accent);
+    color: white;
+}
+
+.modal-content {
+    border-radius: 18px;
+    border: none;
+}
+
+.form-label {
+    font-weight: 500;
+    font-size: 0.9375rem;
+}
+</style>
 
 {% endblock %}
 
