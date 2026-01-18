@@ -139,3 +139,28 @@ class Answer(models.Model):
     
     def __str__(self):
         return self.answer_text
+
+
+class LessonCompletion(models.Model):
+    """Track completion of individual lessons"""
+    student = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
+    completed_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        unique_together = ['student', 'lesson']
+        
+    def __str__(self):
+        return f"{self.student} completed {self.lesson}"
+
+
+class QuizSubmission(models.Model):
+    """Track quiz attempts and scores"""
+    student = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
+    score = models.FloatField()
+    passed = models.BooleanField(default=False)
+    submitted_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return f"{self.student} - {self.quiz} ({self.score}%)"

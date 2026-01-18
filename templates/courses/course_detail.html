@@ -1,0 +1,206 @@
+{% extends 'base.html' %} {% block title %}{{ course.title }} -EduAccess{%endblock %} 
+{% block content %}
+<div class="container my-5" style="padding-top: 80px">
+  <div class="row">
+    <!-- Course Header -->
+    <div class="col-lg-8">
+      <h1 class="display-5 fw-bold mb-3">{{ course.title }}</h1>
+      <p class="lead text-muted">{{ course.description }}</p>
+
+      <div class="d-flex gap-2 mb-4">
+        <span class="badge bg-primary">{{ course.category }}</span>
+        <span class="badge bg-secondary">{{ course.get_level_display }}</span>
+        <span class="badge bg-info text-dark"
+          >{{ course.modules.count }} Modules</span
+        >
+      </div>
+
+      <!-- Course Content (Syllabus) -->
+      <div class="card shadow-sm border-0 mb-4">
+        <div
+          class="card-header bg-white pt-4 pb-2 border-bottom-0 d-flex justify-content-between align-items-center"
+        >
+          <h3 class="h4 mb-0">Course Content</h3>
+          {% if user == course.educator %}
+          <a
+            href="{% url 'core:module_create' course.id %}"
+            class="btn btn-sm btn-outline-primary"
+          >
+            <i class="bi bi-plus-lg"></i> Add Module
+          </a>
+          {% endif %}
+        </div>
+        <div class="card-body">
+          {% if modules %}
+          <div class="accordion" id="courseModules">
+            {% for module in modules %}
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="heading{{ module.id }}">
+                <button
+                  class="accordion-button {% if not forloop.first %}collapsed{% endif %}"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapse{{ module.id }}"
+                >
+                  {{ module.title }}
+                </button>
+              </h2>
+              <div
+                id="collapse{{ module.id }}"
+                class="accordion-collapse collapse {% if forloop.first %}show{% endif %}"
+                data-bs-parent="#courseModules"
+              >
+                <div class="accordion-body p-0">
+                  <div class="list-group list-group-flush">
+                    {% for lesson in module.lessons.all %}
+                    <a
+                      href="{% if lesson.content_type == 'quiz' %}{% url 'core:quiz_detail' lesson.quiz.id %}{% else %}{% url 'core:lesson_detail' lesson.id %}{% endif %}"
+                      class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+                    >
+                      <span>
+                        {% if lesson.content_type == 'video' %}
+                        <i class="bi bi-play-circle me-2"></i>
+                        {% elif lesson.content_type == 'pdf' %}
+                        <i class="bi bi-file-earmark-pdf me-2"></i>
+                        {% elif lesson.content_type == 'quiz' %}
+                        <i class="bi bi-question-circle me-2"></i>
+                        {% else %}
+                        <i class="bi bi-file-text me-2"></i>
+                        {% endif %} {{ lesson.title }}
+                      </span>
+                      <span class="badge bg-light text-dark"
+                        >{{ lesson.duration_minutes }} min</span
+                      >
+                    </a>
+                    {% empty %}
+                    <div class="p-3 text-muted small text-center">
+                      No lessons in this module yet. 
+                      {% if user == course.educator %}
+                      <div class="btn-group mt-2">
+                        <a
+                          href="{% url 'core:lesson_create' module.id %}"
+                          class="btn btn-sm btn-outline-secondary"
+                          >Add Lesson</a
+                        >
+                        <a
+                          href="{% url 'core:lesson_create' module.id %}?type=quiz"
+                          class="btn btn-sm btn-outline-success"
+                          >Add Quiz</a
+                        >
+                      </div>
+                      {% endif %}
+                    </div>
+                    {% endfor %} 
+                    {% if user == course.educator and module.lessons.exists %}
+                    <div class="p-2 text-center bg-light">
+                      <div class="btn-group">
+                        <a
+                          href="{% url 'core:lesson_create' module.id %}"
+                          class="btn btn-sm btn-link text-decoration-none"
+                        >
+                          <i class="bi bi-plus-circle"></i> Add Lesson
+                        </a>
+                        <a
+                          href="{% url 'core:lesson_create' module.id %}?type=quiz"
+                          class="btn btn-sm btn-link text-decoration-none text-success"
+                        >
+                          <i class="bi bi-patch-question"></i> Add Quiz
+                        </a>
+                      </div>
+                    </div>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+          {% else %}
+          <div class="text-center py-5 text-muted">
+            <p class="mb-0">No modules added yet.</p>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="col-lg-4">
+      <div class="card shadow-sm border-0 sticky-top" style="top: 100px">
+        {% if course.thumbnail %}
+        <img
+          src="{{ course.thumbnail.url }}"
+          class="card-img-top"
+          alt="{{ course.title }}"
+          style="height: 200px; object-fit: cover"
+        />
+        {% else %}
+        <div
+          class="bg-light d-flex align-items-center justify-content-center"
+          style="height: 200px"
+        >
+          <i class="bi bi-book display-4 text-muted"></i>
+        </div>
+        {% endif %}
+
+        <div class="card-body">
+          <h4 class="card-title fw-bold mb-3">
+            {% if user == course.educator %} Manage Course {% else %} Course
+            Actions {% endif %}
+          </h4>
+
+          {% if user == course.educator %}
+          <div class="d-grid gap-2">
+            <a
+              href="{% url 'core:course_edit' course.id %}"
+              class="btn btn-outline-secondary"
+              >Edit Course Details</a
+            >
+            <a
+              href="{% url 'core:course_delete' course.id %}"
+              class="btn btn-outline-danger"
+              >Delete Course</a
+            >
+          </div>
+          {% else %} 
+          {% if is_enrolled %}
+          <div class="alert alert-success">
+            <i class="bi bi-check-circle-fill me-1"></i> You are enrolled!
+          </div>
+          <div class="d-grid">
+            <a href="#" class="btn btn-primary btn-lg">Continue Learning</a>
+          </div>
+          {% else %}
+          <div class="d-grid">
+            <a
+              href="{% url 'core:enroll_course' course.id %}"
+              class="btn btn-primary btn-lg"
+              >Enroll Now</a
+            >
+          </div>
+          {% endif %} 
+          {% endif %}
+
+          <hr />
+
+          <div class="d-flex align-items-center">
+            <div class="flex-shrink-0">
+              <!-- Placeholder avatar -->
+              <div
+                class="bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center"
+                style="width: 48px; height: 48px"
+              >
+                {{ course.educator.first_name.0 }}
+              </div>
+            </div>
+            <div class="ms-3">
+              <h6 class="mb-0">{{ course.educator.get_full_name }}</h6>
+              <small class="text-muted">Instructor</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %} {% block title %}Delete Course - EduAccess{% endblock%} 
+{% block content %}
+<div class="container my-5" style="padding-top: 80px">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-sm border-danger">
+        <div class="card-header bg-danger text-white">
+          <h4 class="mb-0">Confirm Deletion</h4>
+        </div>
+        <div class="card-body p-4">
+          <p class="lead">
+            Are you sure you want to delete the course
+            <strong>"{{ course.title }}"</strong>?
+          </p>
+          <p class="text-danger">
+            This action cannot be undone. All modules, lessons, and quizzes
+            within this course will be permanently deleted.
+          </p>
+
+          <form method="POST">
+            {% csrf_token %}
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+              <a
+                href="{% url 'core:course_detail' course.id %}"
+                class="btn btn-secondary"
+                >Cancel</a
+              >
+              <button type="submit" class="btn btn-danger">
+                Yes, Delete Course
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

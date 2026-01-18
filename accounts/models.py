@@ -21,7 +21,7 @@ class StudentProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="Student_profile")
     bio = models.TextField(blank=True)
     date_of_birth = models.DateField(null=True, blank=True)
-    enrolled_courses = models.ManyToManyField('core.Course', blank=True, name='enrolled_students')
+    # Enrollment tracked via core.Enrollment model
     
     def __str__(self):
         return f"Student: {self.user.email}"

@@ -1,0 +1,91 @@
+{% extends 'base.html' %} {% block title %}{{ title }} - EduAccess{% endblock %}
+{% block content %}
+<div class="container my-5" style="padding-top: 80px">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="card shadow-sm border-0">
+        <div class="card-header bg-white border-bottom-0 pt-4 pb-0">
+          <h2 class="h4 mb-0 fw-bold">{{ title }}</h2>
+        </div>
+        <div class="card-body p-4">
+          {% if messages %} 
+          {% for message in messages %}
+          <div
+            class="alert alert-{{ message.tags }} alert-dismissible fade show"
+            role="alert"
+          >
+            {{ message }}
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="alert"
+              aria-label="Close"
+            ></button>
+          </div>
+          {% endfor %} 
+          {% endif %}
+
+          <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="mb-3">
+              <label class="form-label text-muted small fw-bold"
+                >Course Title</label
+              >
+              {{ form.title }}
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label text-muted small fw-bold"
+                >Description</label
+              >
+              {{ form.description }}
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label class="form-label text-muted small fw-bold"
+                  >Category</label
+                >
+                {{ form.category }}
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label text-muted small fw-bold">Level</label>
+                {{ form.level }}
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label text-muted small fw-bold"
+                >Thumbnail Image</label
+              >
+              {{ form.thumbnail }}
+            </div>
+
+            <div class="mb-4 form-check">
+              {{ form.is_published }}
+              <label
+                class="form-check-label"
+                for="{{ form.is_published.id_for_label }}"
+              >
+                Publish immediately (visible to students)
+              </label>
+            </div>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <a
+                href="{% url 'core:dashboard' %}"
+                class="btn btn-outline-secondary"
+                >Cancel</a
+              >
+              <button type="submit" class="btn btn-primary px-4">
+                Save Course
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -10,6 +10,7 @@ def signup_view(request):
         return redirect('core:dashboard')
     
     if request.method == 'POST':
+        print(f"DEBUG: POST data: {request.POST}")
         form = SignUpForm(request.POST)
         if form.is_valid():
             try:
@@ -39,8 +40,8 @@ def login_view(request):
         
         # Authenticate using email
         try:
-            user_obj = User.objects.get(email=email)
-            user = authenticate(request, username=user_obj.username, password=password)
+            # user_obj = User.objects.get(email=email) # Not needed to pre-fetch
+            user = authenticate(request, username=email, password=password)
             
             if user is not None:
                 # Check if user type matches
@@ -74,3 +75,37 @@ def logout_view(request):
 @login_required
 def profile_view(request):
     return render(request, 'accounts/profile.html')
+
+
+@login_required
+def edit_profile(request):
+    """Allow users to edit their profile"""
+    user = request.user
+    
+    if user.user_type == 'educator':
+        from .models import EducatorProfile
+        from .forms import EducatorProfileForm
+        profile_model = EducatorProfile
+        profile_form = EducatorProfileForm
+        title = "Edit Educator Profile"
+    else:
+        from .models import StudentProfile
+        from .forms import StudentProfileForm
+        profile_model = StudentProfile
+        profile_form = StudentProfileForm
+        title = "Edit Student Profile"
+        
+    # Get or create profile
+    profile, created = profile_model.objects.get_or_create(user=user)
+    
+    if request.method == 'POST':
+        form = profile_form(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Profile updated successfully!")
+            return redirect('core:dashboard')
+    else:
+        form = profile_form(instance=profile)
+        
+    return render(request, 'accounts/edit_profile.html', {'form': form, 'title': title})
+

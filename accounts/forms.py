@@ -18,10 +18,7 @@ class SignUpForm(UserCreationForm):
             'placeholder': 'Full Name'
         })
     )
-    user_type = forms.ChoiceField(
-        choices=User.USER_TYPE_CHOICES,
-        widget=forms.HiddenInput()
-    )
+    user_type = forms.CharField(widget=forms.HiddenInput())
     
     password1 = forms.CharField(
         widget=forms.PasswordInput(attrs={
@@ -45,6 +42,7 @@ class SignUpForm(UserCreationForm):
         user.username = self.cleaned_data['email'].split('@')[0]
         user.email = self.cleaned_data['email']
         user.user_type = self.cleaned_data['user_type']
+        print(f"DEBUG: Form saving user {user.email} as {user.user_type}")
         
         # Split full name into first and last name
         full_name = self.cleaned_data['full_name'].split(' ', 1)
@@ -81,3 +79,27 @@ class LoginForm(AuthenticationForm):
         choices=User.USER_TYPE_CHOICES,
         widget=forms.HiddenInput()
     )
+
+
+class EducatorProfileForm(forms.ModelForm):
+    class Meta:
+        from .models import EducatorProfile
+        model = EducatorProfile
+        fields = ['bio', 'expertise', 'website']
+        widgets = {
+            'bio': forms.Textarea(attrs={'class': 'form-control', 'rows': 4}),
+            'expertise': forms.TextInput(attrs={'class': 'form-control'}),
+            'website': forms.URLInput(attrs={'class': 'form-control'}),
+        }
+
+
+class StudentProfileForm(forms.ModelForm):
+    class Meta:
+        from .models import StudentProfile
+        model = StudentProfile
+        fields = ['bio', 'date_of_birth']
+        widgets = {
+            'bio': forms.Textarea(attrs={'class': 'form-control', 'rows': 4}),
+            'date_of_birth': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+        }
+
