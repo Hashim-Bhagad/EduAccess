@@ -27,8 +27,6 @@ EduAccess is a modern, full-featured **Learning Management System (LMS)** design
 | :-----------------------------------------------------------------------: | :-----------------------------------------------------------------------: |
 | ![Course Detail Placeholder](static/images/screenshots/course_detail.png) | ![Learning View Placeholder](static/images/screenshots/learning_view.png) |
 
-> [!TIP]
-> To update these images, simply save your screenshots as `.png` files in the `static/images/screenshots/` directory using the filenames shown above.
 
 ### 📚 Course Management
 
