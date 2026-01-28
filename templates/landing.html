@@ -1,323 +1,387 @@
 {% load static %}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EduAccess - Education for Everyone</title>
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
 
     <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=1.2" />
+  </head>
+  <body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <i class="bi bi-mortarboard-fill me-2"></i>EduAccess
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#features">Features</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
-                    </li>
-                    <li class="nav-item ms-lg-3">
-                        <a class="btn btn-primary px-4" href="#signup">Get Started</a>
-                    </li>
-                </ul>
-            </div>
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <i class="bi bi-mortarboard-fill me-2"></i>EduAccess
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#features">Features</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+            <li class="nav-item ms-lg-3">
+              <a class="btn btn-primary px-4" href="#signup">Get Started</a>
+            </li>
+          </ul>
         </div>
+      </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero-section">
-        <div class="container">
-            <div class="hero-card">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 hero-content">
-                        <h1 class="display-3 fw-bold mb-4 hero-title">
-                            Education <span class="text-primary">Made Accessible</span>
-                        </h1>
-                        <p class="lead mb-4">
-                            Empowering students and educators with cutting-edge tools for modern learning. Join thousands who are transforming education.
-                        </p>
-                        <div class="d-flex gap-3 flex-wrap mb-5">
-                            <a href="#signup" class="btn btn-primary btn-lg px-5">
-                                <i class="bi bi-rocket-takeoff me-2"></i>Start Learning
-                            </a>
-                            <a href="#features" class="btn btn-outline-light btn-lg px-5">
-                                <i class="bi bi-play-circle me-2"></i>Watch Demo
-                            </a>
-                        </div>
-                        <div class="d-flex gap-4 align-items-center flex-wrap">
-                            <div class="stat-item">
-                                <h3 class="fw-bold mb-0 text-primary">10K+</h3>
-                                <p class="text-muted small mb-0">Active Students</p>
-                            </div>
-                            <div class="stat-item">
-                                <h3 class="fw-bold mb-0 text-primary">500+</h3>
-                                <p class="text-muted small mb-0">Educators</p>
-                            </div>
-                            <div class="stat-item">
-                                <h3 class="fw-bold mb-0 text-primary">95%</h3>
-                                <p class="text-muted small mb-0">Satisfaction</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="hero-image-placeholder">
-                            <div class="placeholder-box">
-                                <i class="bi bi-book placeholder-icon"></i>
-                            </div>
-                        </div>
-                    </div>
+      <div class="container">
+        <div class="hero-card">
+          <div class="row align-items-center">
+            <div class="col-lg-6 hero-content">
+              <h1 class="display-3 fw-bold mb-4 hero-title">
+                Education <span class="text-primary">Made Accessible</span>
+              </h1>
+              <p class="lead mb-4">
+                Empowering students and educators with cutting-edge tools for
+                modern learning. Join thousands who are transforming education.
+              </p>
+              <div class="d-flex gap-3 flex-wrap mb-5">
+                <a href="#signup" class="btn btn-primary btn-lg px-5">
+                  <i class="bi bi-rocket-takeoff me-2"></i>Start Learning
+                </a>
+                <a href="#features" class="btn btn-outline-light btn-lg px-5">
+                  <i class="bi bi-play-circle me-2"></i>Watch Demo
+                </a>
+              </div>
+              <div class="d-flex gap-4 align-items-center flex-wrap">
+                <div class="stat-item">
+                  <h3 class="fw-bold mb-0 text-primary">10K+</h3>
+                  <p class="text-muted small mb-0">Active Students</p>
                 </div>
+                <div class="stat-item">
+                  <h3 class="fw-bold mb-0 text-primary">500+</h3>
+                  <p class="text-muted small mb-0">Educators</p>
+                </div>
+                <div class="stat-item">
+                  <h3 class="fw-bold mb-0 text-primary">95%</h3>
+                  <p class="text-muted small mb-0">Satisfaction</p>
+                </div>
+              </div>
             </div>
+            <div class="col-lg-6">
+              <div class="hero-image-placeholder">
+                <div class="placeholder-box">
+                  <i class="bi bi-book placeholder-icon"></i>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Features Section -->
     <section id="features" class="features-section py-5">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="display-5 fw-bold mb-3">Powerful Features</h2>
-                <p class="lead text-muted">Everything you need for a modern learning experience</p>
-            </div>
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-4">
-                    <div class="feature-card">
-                        <div class="icon-box mb-4">
-                            <i class="bi bi-lightning-charge-fill"></i>
-                        </div>
-                        <h3 class="h4 mb-3">Interactive Learning</h3>
-                        <p class="text-muted">Engage with dynamic content, quizzes, and real-time feedback to enhance understanding.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="feature-card">
-                        <div class="icon-box mb-4">
-                            <i class="bi bi-people-fill"></i>
-                        </div>
-                        <h3 class="h4 mb-3">Collaborative Tools</h3>
-                        <p class="text-muted">Work together with peers and instructors in real-time collaboration spaces.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="feature-card">
-                        <div class="icon-box mb-4">
-                            <i class="bi bi-graph-up-arrow"></i>
-                        </div>
-                        <h3 class="h4 mb-3">Progress Tracking</h3>
-                        <p class="text-muted">Monitor your learning journey with detailed analytics and insights.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="feature-card">
-                        <div class="icon-box mb-4">
-                            <i class="bi bi-shield-check"></i>
-                        </div>
-                        <h3 class="h4 mb-3">Secure Platform</h3>
-                        <p class="text-muted">Your data is protected with enterprise-grade security and privacy controls.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="feature-card">
-                        <div class="icon-box mb-4">
-                            <i class="bi bi-phone-fill"></i>
-                        </div>
-                        <h3 class="h4 mb-3">Mobile Friendly</h3>
-                        <p class="text-muted">Access your courses anywhere, anytime on any device seamlessly.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="feature-card">
-                        <div class="icon-box mb-4">
-                            <i class="bi bi-award-fill"></i>
-                        </div>
-                        <h3 class="h4 mb-3">Certifications</h3>
-                        <p class="text-muted">Earn recognized certificates upon completing courses and milestones.</p>
-                    </div>
-                </div>
-            </div>
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 class="display-5 fw-bold mb-3">Powerful Features</h2>
+          <p class="lead text-muted">
+            Everything you need for a modern learning experience
+          </p>
         </div>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4">
+            <div class="feature-card">
+              <div class="icon-box mb-4">
+                <i class="bi bi-lightning-charge-fill"></i>
+              </div>
+              <h3 class="h4 mb-3">Interactive Learning</h3>
+              <p class="text-muted">
+                Engage with dynamic content, quizzes, and real-time feedback to
+                enhance understanding.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="feature-card">
+              <div class="icon-box mb-4">
+                <i class="bi bi-people-fill"></i>
+              </div>
+              <h3 class="h4 mb-3">Collaborative Tools</h3>
+              <p class="text-muted">
+                Work together with peers and instructors in real-time
+                collaboration spaces.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="feature-card">
+              <div class="icon-box mb-4">
+                <i class="bi bi-graph-up-arrow"></i>
+              </div>
+              <h3 class="h4 mb-3">Progress Tracking</h3>
+              <p class="text-muted">
+                Monitor your learning journey with detailed analytics and
+                insights.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="feature-card">
+              <div class="icon-box mb-4">
+                <i class="bi bi-shield-check"></i>
+              </div>
+              <h3 class="h4 mb-3">Secure Platform</h3>
+              <p class="text-muted">
+                Your data is protected with enterprise-grade security and
+                privacy controls.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="feature-card">
+              <div class="icon-box mb-4">
+                <i class="bi bi-phone-fill"></i>
+              </div>
+              <h3 class="h4 mb-3">Mobile Friendly</h3>
+              <p class="text-muted">
+                Access your courses anywhere, anytime on any device seamlessly.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="feature-card">
+              <div class="icon-box mb-4">
+                <i class="bi bi-award-fill"></i>
+              </div>
+              <h3 class="h4 mb-3">Certifications</h3>
+              <p class="text-muted">
+                Earn recognized certificates upon completing courses and
+                milestones.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- About Section -->
     <section id="about" class="about-section py-5">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 mb-4 mb-lg-0">
-                    <div class="about-image-wrapper">
-                        <div class="about-icon-grid">
-                            <div class="grid-icon"><i class="bi bi-laptop"></i></div>
-                            <div class="grid-icon"><i class="bi bi-book"></i></div>
-                            <div class="grid-icon"><i class="bi bi-pencil"></i></div>
-                            <div class="grid-icon"><i class="bi bi-chat-dots"></i></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <h2 class="display-5 fw-bold mb-4">About <span class="text-primary">EduAccess</span></h2>
-                    <p class="lead mb-4">
-                        We're revolutionizing education by making quality learning accessible to everyone, everywhere.
-                    </p>
-                    <p class="text-muted mb-4">
-                        Founded by educators and technologists, EduAccess combines cutting-edge technology with proven teaching methodologies to create an unparalleled learning experience. Our platform supports both students seeking knowledge and educators sharing their expertise.
-                    </p>
-                    <div class="d-flex gap-3 mb-3">
-                        <div class="check-item">
-                            <i class="bi bi-check-circle-fill text-primary me-2"></i>
-                            <span>Expert-curated content</span>
-                        </div>
-                    </div>
-                    <div class="d-flex gap-3 mb-3">
-                        <div class="check-item">
-                            <i class="bi bi-check-circle-fill text-primary me-2"></i>
-                            <span>24/7 learning support</span>
-                        </div>
-                    </div>
-                    <div class="d-flex gap-3 mb-4">
-                        <div class="check-item">
-                            <i class="bi bi-check-circle-fill text-primary me-2"></i>
-                            <span>Flexible learning paths</span>
-                        </div>
-                    </div>
-                    <a href="#signup" class="btn btn-primary btn-lg px-5">
-                        Join Our Community
-                    </a>
-                </div>
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6 mb-4 mb-lg-0">
+            <div class="about-image-wrapper">
+              <div class="about-icon-grid">
+                <div class="grid-icon"><i class="bi bi-laptop"></i></div>
+                <div class="grid-icon"><i class="bi bi-book"></i></div>
+                <div class="grid-icon"><i class="bi bi-pencil"></i></div>
+                <div class="grid-icon"><i class="bi bi-chat-dots"></i></div>
+              </div>
             </div>
+          </div>
+          <div class="col-lg-6">
+            <h2 class="display-5 fw-bold mb-4">
+              About <span class="text-primary">EduAccess</span>
+            </h2>
+            <p class="lead mb-4">
+              We're revolutionizing education by making quality learning
+              accessible to everyone, everywhere.
+            </p>
+            <p class="text-muted mb-4">
+              Founded by educators and technologists, EduAccess combines
+              cutting-edge technology with proven teaching methodologies to
+              create an unparalleled learning experience. Our platform supports
+              both students seeking knowledge and educators sharing their
+              expertise.
+            </p>
+            <div class="d-flex gap-3 mb-3">
+              <div class="check-item">
+                <i class="bi bi-check-circle-fill text-primary me-2"></i>
+                <span>Expert-curated content</span>
+              </div>
+            </div>
+            <div class="d-flex gap-3 mb-3">
+              <div class="check-item">
+                <i class="bi bi-check-circle-fill text-primary me-2"></i>
+                <span>24/7 learning support</span>
+              </div>
+            </div>
+            <div class="d-flex gap-3 mb-4">
+              <div class="check-item">
+                <i class="bi bi-check-circle-fill text-primary me-2"></i>
+                <span>Flexible learning paths</span>
+              </div>
+            </div>
+            <a href="#signup" class="btn btn-primary btn-lg px-5">
+              Join Our Community
+            </a>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- CTA Section -->
     <section class="cta-section py-5">
-        <div class="container">
-            <div class="cta-card text-center">
-                <h2 class="display-5 fw-bold mb-4">Ready to Transform Your Learning?</h2>
-                <p class="lead mb-4">Join thousands of students and educators already using EduAccess</p>
-                <div class="d-flex gap-3 justify-content-center flex-wrap">
-                    <a href="#signup" class="btn btn-primary btn-lg px-5">
-                        <i class="bi bi-rocket-takeoff me-2"></i>Get Started Free
-                    </a>
-                    <a href="#contact" class="btn btn-outline-light btn-lg px-5">
-                        <i class="bi bi-envelope me-2"></i>Contact Sales
-                    </a>
-                </div>
-            </div>
+      <div class="container">
+        <div class="cta-card text-center">
+          <h2 class="display-5 fw-bold mb-4">
+            Ready to Transform Your Learning?
+          </h2>
+          <p class="lead mb-4">
+            Join thousands of students and educators already using EduAccess
+          </p>
+          <div class="d-flex gap-3 justify-content-center flex-wrap">
+            <a href="#signup" class="btn btn-primary btn-lg px-5">
+              <i class="bi bi-rocket-takeoff me-2"></i>Get Started Free
+            </a>
+            <a href="#contact" class="btn btn-outline-light btn-lg px-5">
+              <i class="bi bi-envelope me-2"></i>Contact Sales
+            </a>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Contact Section -->
     <section id="contact" class="contact-section py-5">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="display-5 fw-bold mb-3">Get In Touch</h2>
-                <p class="lead text-muted">Have questions? We'd love to hear from you</p>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="contact-card">
-                        <form>
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control form-control-lg" placeholder="Your Name">
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="email" class="form-control form-control-lg" placeholder="Your Email">
-                                </div>
-                                <div class="col-12">
-                                    <input type="text" class="form-control form-control-lg" placeholder="Subject">
-                                </div>
-                                <div class="col-12">
-                                    <textarea class="form-control form-control-lg" rows="5" placeholder="Your Message"></textarea>
-                                </div>
-                                <div class="col-12">
-                                    <button type="submit" class="btn btn-primary btn-lg w-100">
-                                        <i class="bi bi-send me-2"></i>Send Message
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 class="display-5 fw-bold mb-3">Get In Touch</h2>
+          <p class="lead text-muted">
+            Have questions? We'd love to hear from you
+          </p>
         </div>
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="contact-card">
+              <form>
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      placeholder="Your Name"
+                    />
+                  </div>
+                  <div class="col-md-6">
+                    <input
+                      type="email"
+                      class="form-control form-control-lg"
+                      placeholder="Your Email"
+                    />
+                  </div>
+                  <div class="col-12">
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      placeholder="Subject"
+                    />
+                  </div>
+                  <div class="col-12">
+                    <textarea
+                      class="form-control form-control-lg"
+                      rows="5"
+                      placeholder="Your Message"
+                    ></textarea>
+                  </div>
+                  <div class="col-12">
+                    <button type="submit" class="btn btn-primary btn-lg w-100">
+                      <i class="bi bi-send me-2"></i>Send Message
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer py-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 mb-4 mb-lg-0">
-                    <h3 class="fw-bold mb-3">
-                        <i class="bi bi-mortarboard-fill me-2"></i>EduAccess
-                    </h3>
-                    <p class="text-muted">Making quality education accessible to everyone, everywhere.</p>
-                    <div class="social-links mt-3">
-                        <a href="#" class="social-link"><i class="bi bi-facebook"></i></a>
-                        <a href="#" class="social-link"><i class="bi bi-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="bi bi-linkedin"></i></a>
-                        <a href="#" class="social-link"><i class="bi bi-instagram"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
-                    <h5 class="fw-bold mb-3">Product</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#features" class="footer-link">Features</a></li>
-                        <li><a href="#" class="footer-link">Pricing</a></li>
-                        <li><a href="#" class="footer-link">Security</a></li>
-                        <li><a href="#" class="footer-link">Updates</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
-                    <h5 class="fw-bold mb-3">Company</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#about" class="footer-link">About</a></li>
-                        <li><a href="#" class="footer-link">Blog</a></li>
-                        <li><a href="#" class="footer-link">Careers</a></li>
-                        <li><a href="#contact" class="footer-link">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
-                    <h5 class="fw-bold mb-3">Resources</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="footer-link">Help Center</a></li>
-                        <li><a href="#" class="footer-link">Tutorials</a></li>
-                        <li><a href="#" class="footer-link">Webinars</a></li>
-                        <li><a href="#" class="footer-link">Community</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-2 col-md-6">
-                    <h5 class="fw-bold mb-3">Legal</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="footer-link">Privacy</a></li>
-                        <li><a href="#" class="footer-link">Terms</a></li>
-                        <li><a href="#" class="footer-link">Cookies</a></li>
-                        <li><a href="#" class="footer-link">License</a></li>
-                    </ul>
-                </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 mb-4 mb-lg-0">
+            <h3 class="fw-bold mb-3">
+              <i class="bi bi-mortarboard-fill me-2"></i>EduAccess
+            </h3>
+            <p class="text-muted">
+              Making quality education accessible to everyone, everywhere.
+            </p>
+            <div class="social-links mt-3">
+              <a href="#" class="social-link"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="social-link"><i class="bi bi-twitter"></i></a>
+              <a href="#" class="social-link"><i class="bi bi-linkedin"></i></a>
+              <a href="#" class="social-link"
+                ><i class="bi bi-instagram"></i
+              ></a>
             </div>
-            <hr class="my-4">
-            <div class="text-center text-muted">
-                <p class="mb-0">&copy; 2024 EduAccess. All rights reserved.</p>
-            </div>
+          </div>
+          <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+            <h5 class="fw-bold mb-3">Product</h5>
+            <ul class="list-unstyled">
+              <li><a href="#features" class="footer-link">Features</a></li>
+              <li><a href="#" class="footer-link">Pricing</a></li>
+              <li><a href="#" class="footer-link">Security</a></li>
+              <li><a href="#" class="footer-link">Updates</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+            <h5 class="fw-bold mb-3">Company</h5>
+            <ul class="list-unstyled">
+              <li><a href="#about" class="footer-link">About</a></li>
+              <li><a href="#" class="footer-link">Blog</a></li>
+              <li><a href="#" class="footer-link">Careers</a></li>
+              <li><a href="#contact" class="footer-link">Contact</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+            <h5 class="fw-bold mb-3">Resources</h5>
+            <ul class="list-unstyled">
+              <li><a href="#" class="footer-link">Help Center</a></li>
+              <li><a href="#" class="footer-link">Tutorials</a></li>
+              <li><a href="#" class="footer-link">Webinars</a></li>
+              <li><a href="#" class="footer-link">Community</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-2 col-md-6">
+            <h5 class="fw-bold mb-3">Legal</h5>
+            <ul class="list-unstyled">
+              <li><a href="#" class="footer-link">Privacy</a></li>
+              <li><a href="#" class="footer-link">Terms</a></li>
+              <li><a href="#" class="footer-link">Cookies</a></li>
+              <li><a href="#" class="footer-link">License</a></li>
+            </ul>
+          </div>
         </div>
+        <hr class="my-4" />
+        <div class="text-center text-muted">
+          <p class="mb-0">&copy; 2024 EduAccess. All rights reserved.</p>
+        </div>
+      </div>
     </footer>
 
     <!-- Bootstrap JS -->
@@ -325,28 +389,28 @@
 
     <!-- Smooth Scroll -->
     <script>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
             });
+          }
         });
+      });
 
-        // Navbar background on scroll
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
+      // Navbar background on scroll
+      window.addEventListener("scroll", function () {
+        const navbar = document.querySelector(".navbar");
+        if (window.scrollY > 50) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      });
     </script>
-</body>
+  </body>
 </html>
